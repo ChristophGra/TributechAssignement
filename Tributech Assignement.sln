@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tributech Assignement", "Tributech Assignement\Tributech Assignement.csproj", "{4D387BFC-6BAE-42D4-8C8D-E5E091CD17F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D387BFC-6BAE-42D4-8C8D-E5E091CD17F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D387BFC-6BAE-42D4-8C8D-E5E091CD17F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D387BFC-6BAE-42D4-8C8D-E5E091CD17F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D387BFC-6BAE-42D4-8C8D-E5E091CD17F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {533503C4-589A-468C-B3AB-4A3E3BC77677}
+	EndGlobalSection
+EndGlobal

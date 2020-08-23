@@ -10,3 +10,4 @@ C:\Users\Chris\source\repos\Tributech Assignement\Tributech Assignement\obj\Debu
 C:\Users\Chris\source\repos\Tributech Assignement\Tributech Assignement\obj\Debug\netcoreapp3.1\Tributech Assignement.dll
 C:\Users\Chris\source\repos\Tributech Assignement\Tributech Assignement\obj\Debug\netcoreapp3.1\Tributech Assignement.pdb
 C:\Users\Chris\source\repos\Tributech Assignement\Tributech Assignement\obj\Debug\netcoreapp3.1\Tributech Assignement.genruntimeconfig.cache
+C:\Users\Chris\source\repos\Tributech Assignement\Tributech Assignement\obj\Debug\netcoreapp3.1\Tributech Assignement.csprojAssemblyReference.cache

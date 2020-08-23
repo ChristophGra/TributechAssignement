@@ -2,7 +2,7 @@
   "profiles": {
     "Tributech Assignement": {
       "commandName": "Project",
-      "commandLineArgs": "12224 true"
+      "commandLineArgs": "12224 false"
     }
   }
 }

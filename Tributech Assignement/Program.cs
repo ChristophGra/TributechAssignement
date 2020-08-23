@@ -22,40 +22,43 @@ namespace Tributech_Assignement
 		{
 			if (args.Length > 1)
 			{
-				if(int.TryParse(args[0], out int port) && bool.TryParse(args[1], out bool listening))
+				if (int.TryParse(args[0], out int port) && bool.TryParse(args[1], out bool listening))
 				{
-					foreach (SocketConn sock in SocketConn.GetSocket(listening, port))
+					SocketConn sock = SocketConn.GetSocket(listening, port);
+					sock.Start();
+					BackgroundWorker putDataInConsole = new BackgroundWorker();
+					putDataInConsole.DoWork += PutDataInConsole_DoWork;
+					putDataInConsole.RunWorkerAsync(sock);
+					do
 					{
-						if (listening)
+						string input = Console.ReadLine();
+						if (input == "Stop")
 						{
-							BackgroundWorker putDataInConsole = new BackgroundWorker();
-							putDataInConsole.DoWork += PutDataInConsole_DoWork;
-							putDataInConsole.RunWorkerAsync(new DoWorkEventArgs(sock));
-							while (putDataInConsole.IsBusy)
-							{
-								Thread.Sleep(10);
-							}
+							sock.CloseConnection();
+							return;
 						}
-						else
+						if (input != null)
 						{
-							while (true)
-							{
-								sock.QueueMessage(Encoding.ASCII.GetBytes(Console.ReadLine()));
-							}
+							sock.QueueMessage(Encoding.ASCII.GetBytes(input));
+							input = null;
 						}
-					}
+					} while (true);
 				}
 			}
 		}
 
 		private static void PutDataInConsole_DoWork(object sender, DoWorkEventArgs e)
 		{
-			SocketConn socket = e.Argument as SocketConn;
+			SocketConn socket = (SocketConn)(e.Argument);
 			if (socket != null)
 			{
-				foreach (byte[] buf in socket.GetMessage())
+				while (true)
 				{
-					Console.Write(Encoding.ASCII.GetString(buf));
+					byte[] buf = socket.GetMessage();
+					if (buf != null)
+						Console.Write(Encoding.ASCII.GetString(buf));
+					else
+						Thread.Sleep(10);
 				}
 			}
 		}

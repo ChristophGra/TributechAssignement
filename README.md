@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Project Title
 
 Programming assignement to test my programming ability for a Job Interview.
@@ -28,5 +27,3 @@ Easy to use.
 Cons: 
 No error handling.
 Not very flexible.
-=======
->>>>>>> d7b5abf738104997aa39103c7201ec20d301f03c

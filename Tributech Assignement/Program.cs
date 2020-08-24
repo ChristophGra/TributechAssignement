@@ -22,6 +22,7 @@ namespace Tributech_Assignement
 		{
 			if (args.Length > 1)
 			{
+				//Accepts: (int Portnummer) (bool if waiting for incoming connection or if making initial connection) 
 				if (int.TryParse(args[0], out int port) && bool.TryParse(args[1], out bool listening))
 				{
 					SocketConn sock = SocketConn.GetSocket(listening, port);

@@ -12,15 +12,17 @@ namespace Tributech_Assignement.Connection
 	public class SocketConn
 	{
 		#region Members
-		private Socket _ConnectedSocket;
+		//Readonly to ensure that the references stay intact
+		private readonly Socket _ConnectedSocket;
 		private readonly BackgroundWorker receiveWorker;
 		private readonly BackgroundWorker sendWorker;
 		private readonly Queue<byte[]> receivedQueue;
 		private readonly Queue<byte[]> sendQueue;
 		#endregion
 		#region Init
-		private SocketConn()
+		private SocketConn(Socket socket)
 		{
+			_ConnectedSocket = socket;
 			sendQueue = new Queue<byte[]>();
 			receivedQueue = new Queue<byte[]>();
 			receiveWorker = new BackgroundWorker();
@@ -53,15 +55,14 @@ namespace Tributech_Assignement.Connection
 
 			tempsocket.Bind(CreateEndPoint(port, hostAdress));
 			tempsocket.Listen(10);
-			SocketConn connection = new SocketConn();
-			connection._ConnectedSocket = tempsocket.Accept();
+			SocketConn connection = new SocketConn(tempsocket.Accept());
 			return connection;
 		}
 		public static SocketConn GetInitiatingSocket(int port, string hostAdress)
 		{
 			var remoteEP = CreateEndPoint(port, hostAdress);
-			SocketConn connection = new SocketConn();
-			connection._ConnectedSocket = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+			Socket tempSocket = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+			SocketConn connection = new SocketConn(tempSocket);
 			try
 			{
 			connection._ConnectedSocket.Connect(remoteEP);
@@ -113,13 +114,13 @@ namespace Tributech_Assignement.Connection
 		#region MessageIO
 		public byte[] GetMessage()
 		{
-			byte[] buf = null;
+			byte[] messageBuffer = null;
 			lock (receivedQueue)
 			{
 				if (receivedQueue.Count > 0)
-					buf = receivedQueue.Dequeue();
+					messageBuffer = receivedQueue.Dequeue();
 			}
-			return buf;
+			return messageBuffer;
 		}
 		public void QueueMessage(byte[] message)
 		{
